@@ -4,23 +4,49 @@ class Paperboys
     @name = name
     @experience = experience
     @earnings = earnings
-
   end
+
   def quota
-    puts @experience / 2 + 50
+     @experience / 2 + 50
   end
 
   def deliver(start_address, end_address)
-
-
-    total_address = (end_address - start_address) * 0.25
-       puts @experience =  @experience + total_address
+    if @experience <= quota
+      total_address = (end_address - start_address) * 0.25
+       @experience =  @experience + total_address
+    else
+      total_address = (end_address - start_address) * 0.5
+         @experience =  @experience + total_address
+    end
   end
 
 
   def report
+    @earnings = @experience * 0.25
+    puts "I'm #{@name}, I've delivered #{@experience} and I've earned #{@earnings}"
 
   end
+
+def quota2
+    @experience = @experience / 2 + 50
+  end
+
+  def deliver2(start_address, end_address)
+    if @experience <= quota2
+    total_address =(end_address - start_address) * 0.25
+       @experience =  @experience + total_address
+    else
+      total_address =(end_address - start_address) * 0.5
+         @experience =  @experience + total_address
+    end
+
+  end
+  def report2
+    @earnings = @experience * 0.25
+    puts "I'm #{@name}, I've delivered #{@experience} papers and I've earned $#{@earnings}"
+
+  end
+
 
 
 
@@ -34,10 +60,13 @@ end
 
 
 
-john = Paperboys.new("john", 45, 10)
+john = Paperboys.new("john", 0, 0)
 peter = Paperboys.new("peter", 20,10)
 
-# john.quota
-
-john.deliver(19,400)
-p john
+p john.quota
+p john.deliver(101,160)
+p john.report
+# p john
+p john.quota2
+p john.deliver2(1,75)
+p john.report2
